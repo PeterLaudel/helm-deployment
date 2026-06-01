@@ -1,3 +1,5 @@
 apps:
   - name: argocd
     namespace: argocd
+  - name: ingress-nginx
+    namespace: ingress-nginx
