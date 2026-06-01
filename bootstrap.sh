@@ -11,6 +11,7 @@ helm repo add argo https://argoproj.github.io/argo-helm
 helm repo update
 helm upgrade --install argocd argo/argo-cd \
   --namespace argocd --create-namespace \
+  --version "9.5.17" \
   --wait
 
 # 2. GitHub repo credentials (uses gh CLI token — no manual PAT needed)
