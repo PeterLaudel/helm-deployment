@@ -1,0 +1,5 @@
+apiVersion: v2
+name: infrastructure
+description: ArgoCD app registry for production dependencies
+type: application
+version: 0.1.0
