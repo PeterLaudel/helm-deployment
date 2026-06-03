@@ -5,3 +5,6 @@ apps:
     namespace: ingress-nginx
   - name: cert-manager
     namespace: cert-manager
+  - name: cert-manager-config
+    namespace: cert-manager
+    syncWave: "1"

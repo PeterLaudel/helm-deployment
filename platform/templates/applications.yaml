@@ -4,6 +4,10 @@ kind: Application
 metadata:
   name: {{ .name }}
   namespace: argocd
+  {{- if .syncWave }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "{{ .syncWave }}"
+  {{- end }}
 spec:
   project: default
   source:
