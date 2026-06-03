@@ -8,3 +8,5 @@ argo-cd:
       hostname: argocd.peter-laudel.de
       annotations:
         nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      tls: true
