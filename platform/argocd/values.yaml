@@ -6,3 +6,5 @@ argo-cd:
       enabled: true
       ingressClassName: nginx
       hostname: argocd.peter-laudel.de
+      annotations:
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
