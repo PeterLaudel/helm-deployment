@@ -1,0 +1,10 @@
+postgresql:
+  auth:
+    existingSecret: postgresql-credentials
+    secretKeys:
+      adminPasswordKey: postgres-password
+      userPasswordKey: password
+  primary:
+    persistence:
+      enabled: true
+      size: 10Gi

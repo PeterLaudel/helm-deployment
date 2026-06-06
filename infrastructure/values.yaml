@@ -1,1 +1,3 @@
-apps: []
+apps:
+  - name: postgresql
+    namespace: postgresql

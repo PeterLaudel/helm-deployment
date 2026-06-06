@@ -1,0 +1,9 @@
+apiVersion: v2
+name: postgresql
+description: PostgreSQL via Bitnami
+type: application
+version: 0.1.0
+dependencies:
+  - name: postgresql
+    version: "16.x.x"
+    repository: https://charts.bitnami.com/bitnami
