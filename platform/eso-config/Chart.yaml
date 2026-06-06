@@ -1,0 +1,5 @@
+apiVersion: v2
+name: eso-config
+description: ClusterSecretStore pointing at GCP Secret Manager
+type: application
+version: 0.1.0

@@ -1,0 +1,9 @@
+apiVersion: v2
+name: eso
+description: External Secrets Operator
+type: application
+version: 0.1.0
+dependencies:
+  - name: external-secrets
+    version: "0.x.x"
+    repository: https://charts.external-secrets.io

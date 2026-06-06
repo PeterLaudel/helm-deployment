@@ -56,5 +56,27 @@ create_gcr_secret() {
 
 create_gcr_secret psychotherapie-seliger
 
-# 5. Bootstrap ArgoCD
+# 5. Create GCP service account for External Secrets Operator
+ESO_SA_NAME="eso-secret-manager"
+ESO_SA_EMAIL="$ESO_SA_NAME@$GCP_PROJECT.iam.gserviceaccount.com"
+
+gcloud iam service-accounts create "$ESO_SA_NAME" \
+  --project="$GCP_PROJECT" --display-name="ESO Secret Manager" 2>/dev/null || true
+
+gcloud projects add-iam-policy-binding "$GCP_PROJECT" \
+  --member="serviceAccount:$ESO_SA_EMAIL" \
+  --role="roles/secretmanager.secretAccessor" --quiet
+
+ESO_KEY_FILE=$(mktemp)
+gcloud iam service-accounts keys create "$ESO_KEY_FILE" \
+  --iam-account="$ESO_SA_EMAIL" --project="$GCP_PROJECT"
+
+kubectl create namespace eso --dry-run=client -o yaml | kubectl apply -f -
+kubectl create secret generic gcp-secret-manager-credentials \
+  --from-file=credentials.json="$ESO_KEY_FILE" \
+  --namespace=eso \
+  --dry-run=client -o yaml | kubectl apply -f -
+rm "$ESO_KEY_FILE"
+
+# 6. Bootstrap ArgoCD
 kubectl apply -f root.yml

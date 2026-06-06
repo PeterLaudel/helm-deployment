@@ -8,3 +8,8 @@ apps:
   - name: cert-manager-config
     namespace: cert-manager
     syncWave: "1"
+  - name: eso
+    namespace: eso
+  - name: eso-config
+    namespace: eso
+    syncWave: "1"
