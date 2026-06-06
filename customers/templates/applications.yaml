@@ -15,7 +15,10 @@ spec:
     helm:
       valueFiles:
         - values.yaml
-        - values.{{ $customer.name }}.yaml
+      values: |
+        ingress:
+          hostname: {{ $customer.domain }}
+        secretStore: {{ $customer.secretStore }}
   destination:
     server: https://kubernetes.default.svc
     namespace: {{ $customer.name }}

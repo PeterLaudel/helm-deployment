@@ -1,4 +1,6 @@
 customers:
   - name: staging
+    domain: staging.peter-laudel.de
+    secretStore: secret-store
     apps:
       - psychotherapie-seliger
