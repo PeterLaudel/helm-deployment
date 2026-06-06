@@ -1,0 +1,30 @@
+{{- range .Values.customers }}
+{{- $customer := . }}
+{{- range .apps }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $customer.name }}-{{ . }}
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/PeterLaudel/{{ . }}-deploy
+    targetRevision: HEAD
+    path: .
+    helm:
+      valueFiles:
+        - values.yaml
+        - values.{{ $customer.name }}.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{ $customer.name }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+{{- end }}
+{{- end }}
