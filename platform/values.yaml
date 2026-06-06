@@ -11,3 +11,8 @@ apps:
     namespace: eso
   - name: eso-config
     syncWave: "1"
+    ignoreDifferences:
+      - group: external-secrets.io
+        kind: ClusterSecretStore
+        jsonPointers:
+          - /spec/provider/gcpsm/auth/secretRef

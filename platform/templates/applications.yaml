@@ -25,5 +25,16 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+  {{- if .ignoreDifferences }}
+  ignoreDifferences:
+  {{- range .ignoreDifferences }}
+  - group: {{ .group }}
+    kind: {{ .kind }}
+    jsonPointers:
+    {{- range .jsonPointers }}
+    - {{ . }}
+    {{- end }}
+  {{- end }}
+  {{- end }}
 ---
 {{- end }}
