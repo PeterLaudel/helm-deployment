@@ -1,6 +1,2 @@
 external-secrets:
   installCRDs: true
-  crds:
-    create: true
-    createClusterSecretStore: true
-    createClusterExternalSecret: true
