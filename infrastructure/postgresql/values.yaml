@@ -1,10 +1,10 @@
-postgresql:
-  auth:
-    existingSecret: postgresql-credentials
-    secretKeys:
-      adminPasswordKey: postgres-password
-      userPasswordKey: password
-  primary:
-    persistence:
-      enabled: true
-      size: 10Gi
+image: postgres:16
+storage:
+  size: 10Gi
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
